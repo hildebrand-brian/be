@@ -15,8 +15,6 @@ app.post(
     const validationResult = await createShipmentRequestSchema.validateAsync(
       req.body
     );
-    if (validationResult.error)
-      return res.status(400).send(validationResult.error);
     await shipmentService.createShipment(validationResult);
     return res.status(201).send("Created");
   })
@@ -27,8 +25,6 @@ app.post(
   asyncHandler(async (req: any, res: any, next: any) => {
     const validationResult =
       await createOrganizationRequestSchema.validateAsync(req.body);
-    if (validationResult.error)
-      return res.status(400).send(validationResult.error);
     await shipmentService.createOrganization(validationResult);
     return res.status(201).send("Created");
   })
